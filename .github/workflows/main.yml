@@ -65,23 +65,7 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           IMAGE_NAME: my-image
         run: |
-          cat  /tmp/ec2_key.pem
           ssh -o StrictHostKeyChecking=no -i /tmp/ec2_key.pem ubuntu@$EC2_IP << 'EOF'
-            # Add user to Docker group to avoid permission issues
-            sudo usermod -aG docker ubuntu
-            # Refresh group membership without logging out
-            newgrp docker
-
-            # Pull the latest Docker image from DockerHub
-            docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
-
-            # Stop any running containers of the app
-            docker ps -q --filter "name=my-app" | xargs -r docker stop
-
-            # Remove any old containers of the app
-            docker ps -a -q --filter "name=my-app" | xargs -r docker rm
-
-            # Run the new Docker container
-            docker run -d --name my-app -p 80:80 $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+            ls -la
           EOF
 

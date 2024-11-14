@@ -68,4 +68,15 @@ jobs:
           cd /home/ubuntu
           echo "$DOCKERHUB_USERNAME" > 1.txt
           echo "$IMAGE_NAME" > 2.txt
+          # Pull the latest Docker image from DockerHub
+          docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+
+            # Stop any running containers of the app
+          docker ps -q --filter "name=my-app" | xargs -r docker stop
+
+            # Remove any old containers of the app
+          docker ps -a -q --filter "name=my-app" | xargs -r docker rm
+
+            # Run the new Docker container
+          docker run -d --name my-app -p 80:80 $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
         EOF

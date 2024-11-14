@@ -67,6 +67,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/ec2_key.pem ubuntu@$EC2_IP << 'EOF'
            cd /home/ubuntu
-           echo $DOCKERHUB_USERNAME > 1.txt
-           echo $IMAGE_NAME > 2.txt
+           echo '"'"'${DOCKERHUB_USERNAME}'"'"' > 1.txt
+           echo '"'"'${IMAGE_NAME}'"'"' > 2.txt
           EOF

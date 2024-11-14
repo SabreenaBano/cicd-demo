@@ -71,3 +71,5 @@ jobs:
       - name: Output
         run: |
            echo -e "Hello World"
+           cd /home/ubuntu
+           touch text.txt

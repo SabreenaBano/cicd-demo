@@ -33,3 +33,5 @@ sudo ufw enable
  1364  docker ps
  1365  docker ps -a
  1366  docker ps
+ -----------------------------------------------------------------
+ BLOG FOR CREATING COMPLETE CI/CD (https://github.com/readme/guides/sothebys-github-actions)

@@ -66,6 +66,6 @@ jobs:
           IMAGE_NAME: my-image
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/ec2_key.pem ubuntu@$EC2_IP << 'EOF'
-            ls -la
+            docker ps
           EOF
 

@@ -67,6 +67,9 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/ec2_key.pem ubuntu@$EC2_IP << 'EOF'
             docker ps
+            echo $DOCKERHUB_USERNAME
+            echo $IMAGE_NAME
             docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+            exit 0
           EOF
 
